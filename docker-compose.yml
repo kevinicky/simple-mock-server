@@ -10,7 +10,7 @@ services:
     depends_on:
       - nginx
   nginx:
-    container_name: nginx
+    container_name: nginx-mock-server
     restart: always
     image: nginx:latest
     networks:
