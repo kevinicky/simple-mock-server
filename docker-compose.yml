@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  simple-mock-server:
+    container_name: simple-mock-server
+    restart: always
+    image: kevinicky/simple-mock-server
+    networks:
+      - mock-server-net
+    depends_on:
+      - nginx
+  nginx:
+    container_name: nginx
+    restart: always
+    image: nginx:latest
+    networks:
+      - mock-server-net
+    volumes:
+      - ~/workspace/docker/nginx-mock-server/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "8080:80"
+      - "443:443"
+
+networks:
+  mock-server-net:
+    name: mock-server-net
